@@ -1,0 +1,11 @@
+*.db
+*.iml
+*.ipr
+*.iws
+*.ids
+manifest.yml
+
+.gradle/
+build/
+out/
+gradle/
