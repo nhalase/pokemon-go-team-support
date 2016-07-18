@@ -2,9 +2,10 @@
 ---
 spring:
   jpa:
-    generate-ddl: true
+    hibernate:
+      ddl-auto: update
 slack:
   webhook:
-    url: https://hooks.slack.com/services/...
+    url: @slack.webhook.url@
   pokemon:
-    valid_command_tokens: asdf1234,qwert5678
+    valid_command_tokens: @slack.pokemon.valid_command_tokens@

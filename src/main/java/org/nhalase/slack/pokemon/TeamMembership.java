@@ -14,17 +14,35 @@ class TeamMembership {
     private String slackUserId = "";
     @Column(name = "slack_team_id", nullable = false)
     private String slackTeamId = "";
+    @Column(name = "slack_user_name", nullable = false)
+    private String slackUserName = "";
+    @Column(name = "pokemon_go_trainer_name", nullable = false)
+    private String pokemonGoTrainerName = "Unknown Trainer";
     @Column(name = "pokemon_go_team", nullable = false)
-    private String pokemonGoTeam = "";
+    private String pokemonGoTeam = "Undecided";
     @Column(name = "pokemon_go_level", nullable = false)
-    private Integer pokemonGoLevel = 0;
+    private Integer pokemonGoLevel = 1;
 
     TeamMembership() {
-        id = 0L;
-        slackUserId = "";
-        slackTeamId = "";
-        pokemonGoTeam = "";
-        pokemonGoLevel = 0;
+        this.id = 0L;
+        this.slackUserId = "";
+        this.slackTeamId = "";
+        this.slackUserName = "";
+        this.pokemonGoTrainerName = "Unknown Trainer";
+        this.pokemonGoTeam = "Undecided";
+        this.pokemonGoLevel = 1;
+    }
+
+    TeamMembership(
+            @NotNull String slackUserId,
+            @NotNull String slackTeamId,
+            @NotNull String slackUserName,
+            @NotNull String pokemonGoTrainerName
+    ) {
+        this.slackUserId = slackUserId;
+        this.slackTeamId = slackTeamId;
+        this.slackUserName = slackUserName;
+        this.pokemonGoTrainerName = pokemonGoTrainerName;
     }
 
     @NotNull
@@ -52,6 +70,22 @@ class TeamMembership {
 
     public void setSlackTeamId(@NotNull String slackTeamId) {
         this.slackTeamId = slackTeamId;
+    }
+
+    public String getSlackUserName() {
+        return slackUserName;
+    }
+
+    public void setSlackUserName(String slackUserName) {
+        this.slackUserName = slackUserName;
+    }
+
+    public String getPokemonGoTrainerName() {
+        return pokemonGoTrainerName;
+    }
+
+    public void setPokemonGoTrainerName(String pokemonGoTrainerName) {
+        this.pokemonGoTrainerName = pokemonGoTrainerName;
     }
 
     @NotNull
@@ -82,6 +116,8 @@ class TeamMembership {
         if (!id.equals(that.id)) return false;
         if (!slackUserId.equals(that.slackUserId)) return false;
         if (!slackTeamId.equals(that.slackTeamId)) return false;
+        if (!slackUserName.equals(that.slackUserName)) return false;
+        if (!pokemonGoTrainerName.equals(that.pokemonGoTrainerName)) return false;
         if (!pokemonGoTeam.equals(that.pokemonGoTeam)) return false;
         return pokemonGoLevel.equals(that.pokemonGoLevel);
 
@@ -92,6 +128,8 @@ class TeamMembership {
         int result = id.hashCode();
         result = 31 * result + slackUserId.hashCode();
         result = 31 * result + slackTeamId.hashCode();
+        result = 31 * result + slackUserName.hashCode();
+        result = 31 * result + pokemonGoTrainerName.hashCode();
         result = 31 * result + pokemonGoTeam.hashCode();
         result = 31 * result + pokemonGoLevel.hashCode();
         return result;
@@ -103,6 +141,8 @@ class TeamMembership {
                 "id=" + id +
                 ", slackUserId='" + slackUserId + '\'' +
                 ", slackTeamId='" + slackTeamId + '\'' +
+                ", slackUserName='" + slackUserName + '\'' +
+                ", pokemonGoTrainerName='" + pokemonGoTrainerName + '\'' +
                 ", pokemonGoTeam='" + pokemonGoTeam + '\'' +
                 ", pokemonGoLevel=" + pokemonGoLevel +
                 '}';

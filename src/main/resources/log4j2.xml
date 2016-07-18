@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration status="INFO" monitorInterval="0">
+    <properties>
+        <property name="baseLayout">%d{HH:mm:ss.SSS} [%t] %-5level %logger %msg%n</property>
+        <property name="errLayout">%d{HH:mm:ss.SSS} [%t] %-5level %logger - %X %msg%n</property>
+    </properties>
+
+    <MarkerFilter marker="PROFILER" onMatch="ACCEPT" onMismatch="NEUTRAL"/>
+
+    <appenders>
+        <Console name="baseStdout" target="SYSTEM_OUT" follow="true">
+            <PatternLayout pattern="${baseLayout}"/>
+            <ThresholdFilter level="WARN" onMatch="DENY" onMismatch="NEUTRAL"/>
+        </Console>
+        <Console name="baseStderr" target="SYSTEM_ERR" follow="true">
+            <PatternLayout pattern="${errLayout}"/>
+            <ThresholdFilter level="WARN" onMatch="NEUTRAL" onMismatch="DENY"/>
+        </Console>
+    </appenders>
+
+    <loggers>
+        <root level="INFO">
+            <appender-ref ref="baseStdout"/>
+            <appender-ref ref="baseStderr"/>
+        </root>
+        <logger level="WARN" name="org.springframework"/>
+    </loggers>
+</configuration>
