@@ -47,11 +47,10 @@ final class PokemonRequestContext {
 
         PokemonRequestContext that = (PokemonRequestContext) o;
 
-        if (!slackCommand.equals(that.slackCommand)) return false;
-        if (!teamMembershipRepository.equals(that.teamMembershipRepository)) return false;
-        if (!pokemonCommand.equals(that.pokemonCommand)) return false;
-        return user.equals(that.user);
-
+        return slackCommand.equals(that.slackCommand)
+                && teamMembershipRepository.equals(that.teamMembershipRepository)
+                && pokemonCommand.equals(that.pokemonCommand)
+                && user.equals(that.user);
     }
 
     @Override
@@ -77,6 +76,7 @@ final class PokemonRequestContext {
         return new Builder(slackCommand);
     }
 
+    @SuppressWarnings("WeakerAccess") // cannot be private
     static final class Builder {
 
         private SlackCommand slackCommand;
@@ -103,7 +103,7 @@ final class PokemonRequestContext {
             return this;
         }
 
-        public PokemonRequestContext build() throws InvalidRequestContextException {
+        PokemonRequestContext build() throws InvalidRequestContextException {
             if (this.slackCommand == null ||
                     this.teamMembershipRepository == null ||
                     this.pokemonCommand == null ||

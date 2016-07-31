@@ -25,11 +25,11 @@ public class PokemonCommand {
                 .orElse("");
     }
 
-    public String getCommand() {
+    String getCommand() {
         return command;
     }
 
-    public String getText() {
+    String getText() {
         return text;
     }
 
@@ -40,9 +40,7 @@ public class PokemonCommand {
 
         PokemonCommand that = (PokemonCommand) o;
 
-        if (!command.equals(that.command)) return false;
-        return text.equals(that.text);
-
+        return command.equals(that.command) && text.equals(that.text);
     }
 
     @Override

@@ -36,7 +36,6 @@ public class PokemonCommandHandlers {
                 .put("team_ephemeral", this::setTeam)
                 .put("level_ephemeral", this::setLevel)
                 .put("report_ephemeral", this::reportAll)
-                .put("reset_ephemeral", this::reset)
                 .build();
     }
 
@@ -244,16 +243,6 @@ public class PokemonCommandHandlers {
                 membership.getPokemonGoTrainerName(),
                 membership.getPokemonGoLevel()
         );
-    }
-
-    @NotNull
-    private SlackMessageBuilder reset(@NotNull PokemonRequestContext ctx) { // TODO: remove; temp
-        logger.info("reset");
-        if (!ctx.getSlackCommand().getUserName().equals("nhalase") && !ctx.getSlackCommand().getUserName().equals("nick")) {
-            return slackMessageFactory.createMessageBuilder().setText("you don't have access to this function");
-        }
-        ctx.getTeamMembershipRepository().deleteAll();
-        return slackMessageFactory.createMessageBuilder().setText("done");
     }
 
 }
