@@ -41,6 +41,11 @@ repositories {
 }
 
 dependencies {
+
+    // Greater Milwaukee Java Meetup Slack Integration
+    compile 'com.github.greatermkemeetup:slack-integrations-api:1.0.2'
+    compile 'com.github.greatermkemeetup:slack-integrations-core:1.0.2'
+
     // App
     compile "com.google.guava:guava:19.0"
     compile "org.apache.commons:commons-lang3:3.4"
